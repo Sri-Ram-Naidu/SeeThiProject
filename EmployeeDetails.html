@@ -1,0 +1,135 @@
+<html>
+
+<head>
+    <title>Employeement Management Portal</title>
+    <script>
+        var employeeArray = [];
+
+        function init() {
+            if (localStorage.placeRecord)
+                employeeArray = JSON.parse(localStorage.placeRecord);
+            for (var i = 0; i < employeeArray.length; i++) {
+                prepareTableCell(employeeArray[i].t1, employeeArray[i].t2, employeeArray[i].t3, employeeArray[i].t4, employeeArray[i].t5, employeeArray[i].t6);
+            }
+        }
+
+        function onRegistered() {
+            var firstname = document.getElementById("t1").value;
+            var lastname = document.getElementById("t2").value;
+            var email = document.getElementById("t3").value;
+
+            var Mobile = document.getElementById("t4").value;
+            var desig = document.getElementById("t5").value;
+            var empObj = {
+                t1: firstName,
+                t2: lastName,
+                t3: email,
+                t4: Mobile,
+                t5: desig
+            };
+            employeeArray.push(empObj);
+            localStorage.placeRecord = JSON.stringify(employeeArray);
+            prepareTableCell(firstname, lastname, email, obile, desig);
+            document.getElementById("t1").value = "";
+            document.getElementById("t2").value = "";
+            document.getElementById("t3").value = "";
+            document.getElementById("t4").value = "";
+            document.getElementById("t5").value = "";
+        }
+
+        function prepareTableCell(firstname, lastname, email, Mobile, desig) {
+            var table = document.getElementById("regTable");
+            var row = table.insertRow();
+            var fnameCell = row.insertCell(0);
+            var lnameCell = row.insertCell(1);
+            var mailCell = row.insertCell(2);
+            var designationCell = row.isertCell(3);
+            var phoneCell = row.insertCell(4);
+            fnameCell.innerHTML = firstname;
+            lnameCell.innerHTML = lastname;
+            mailCell.innerHTML = email;
+            designationCell.innerHTML = desig;
+            phoneCell.innerHTML = Mobile;
+        }
+    </script>
+
+</head>
+
+<body onload="init()">
+    <fieldset>
+        <legend>Employee Form Registration</legend>
+        <table>
+            <tr>
+                <td>FirstName</td>
+                <td><input type="text" name="fn" id="t1" placeholder="EnterName" required></td>
+                </td><br>
+            </tr>
+            <tr>
+                <td>LastName</td>
+                <td><input type="text" name="ln" id="t2" placeholder="EnterLastName" required></td>
+                </td><br>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="mail" id="t3" placeholder="Email" required></td>
+                </td><br>
+            </tr>
+            <tr>
+                <td>MobileNumber</td>
+                <td><input type="number" name="num" id="t4" placeholder="Enter Phone" required></td>
+                </td><br>
+            </tr>
+            <tr>
+                <td>Designation</td>
+                <td><input type="text" name="des" id="t5" placeholder="desig" required></td>
+                </td><br>
+            </tr>
+            <tr>
+                <td><input type="button" value="submit" onclick="onRegistered()">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <aside class="rightbar">
+        <table class=" table table-bordered table-hover" id="regTable">
+            <thead>
+                <tr>
+                    <th>
+                        <td>fname
+                        </td>
+                        </td>
+                    </th>
+                    <th>
+                        <td>lname
+                        </td>
+                        </td>
+                    </th>
+                    <th>
+                        <td>mail
+                        </td>
+                        </td>
+                    </th>
+                    <th>
+                        <td>dsesignation
+                        </td>
+                        </td>
+                    </th>
+                    <th>
+                        <td>birthDate
+                        </td>
+                        </td>
+                    </th>
+                    <td>
+                        <th>
+                            <td>phoneNumber</td>
+                    </td>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </aside>
+
+</body>
+
+</html>

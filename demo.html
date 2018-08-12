@@ -1,0 +1,130 @@
+<html>
+
+<head>
+    <script>
+        var demoDetails = [];
+
+        function init() {
+            if (localStorage.demoRecord)
+                employeeArray = JSON.parse(localStorage.demoRecord);
+            for (var i = 0; i < demoDetails.length; i++) {
+                prepareTableCell(demoDetails[i].t1, demoDetails[i].t2);
+            }
+        }
+
+        function demoRetrieve() {
+            var Names = document.getElementById("t1").value;
+            var Lname = document.getElementById("t2").value;
+            var Email = document.getElementById("t3").value;
+            var mobile = document.getElementById("t4").value;
+            var desig = document.getElementById("t5").value;
+            var demoObj = {
+                t1: Names,
+                t2: Lname,
+                t3: Email,
+                t4: mobile,
+                t5: desig
+            };
+            demoDetails.push(demoObj);
+            localStorage.demoRecord = JSON.stringify(demoDetails);
+            prepareTableCell(Names, Lname, Email, mobile, desig);
+            document.getElementById("t1").value = "";
+            document.getElementById("t2").value = "";
+            document.getElementById("t3").value = "";
+            document.getElementById("t4").value = "";
+            document.getElementById("t5").value = "";
+        }
+
+        function prepareTableCell(Names, Lname, Email, mobile, desig) {
+            var table = document.getElementById("regTable");
+            var row = table.insertRow();
+            var nameCell = row.insertCell(0);
+            var lnameCell = row.insertCell(1);
+            var emailCell = row.insertCell(2);
+            var mobileCell = row.insertCell(3);
+            var desCell = row.insertCell(4);
+            nameCell.innerHTML = Names;
+            lnameCell.innerHTML = Lname;
+            emailCell.innerHTML = Email;
+            mobileCell.innerHTML = mobile;
+            desCell.innerHTML = desig;
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <fieldset>
+        <legend>Demo Details</legend>
+        <table id="details">
+            <table>
+                <tr>
+                    <td>FirstName</td>
+                    <td><input type="text" id="t1" placeholder="EnterName" required></td>
+                    </td><br>
+                </tr>
+                <tr>
+                    <td>LastName</td>
+                    <td><input type="text" id="t2" placeholder="EnterLastName" required></td>
+                    </td><br>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" id="t3" placeholder="Email" required></td>
+                    </td><br>
+                </tr>
+                <tr>
+                    <td>MobileNumber</td>
+                    <td><input type="number" id="t4" placeholder="Enter Phone" required></td>
+                    </td><br>
+                </tr>
+                <tr>
+                    <td>Designation</td>
+                    <td><input type="text" id="t5" placeholder="desig" required></td>
+                    </td><br>
+                </tr>
+                <tr>
+                    <td><input type="button" value="submit" onclick="demoRetrieve()">
+                    </td>
+                </tr>
+
+            </table>
+    </fieldset>
+    <table id="regTable">
+        <thead>
+            <tr>
+                <th>
+                    <td>fname
+                    </td>
+                    </td>
+                </th>
+                <th>
+                    <td>lname
+                    </td>
+                    </td>
+                </th>
+                <th>
+                    <td>mail
+                    </td>
+                    </td>
+                </th>
+                <th>
+                    <td>dsesignation
+                    </td>
+                    </td>
+                </th>
+                <th>
+                    <td>birthDate
+                    </td>
+                    </td>
+                </th>
+                <td>
+                    <th>
+                        <td>phoneNumber</td>
+                </td>
+                </th>
+            </tr>
+        </thead>
+    </table>
+</body>
+
+</html>
